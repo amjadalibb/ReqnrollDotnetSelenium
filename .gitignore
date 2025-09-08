@@ -1,0 +1,11 @@
+bin
+obj
+obj
+.vs/
+.git/
+packages
+*.nupkg
+*.DS_Store
+*.user
+**/Reports/*
+*.log
