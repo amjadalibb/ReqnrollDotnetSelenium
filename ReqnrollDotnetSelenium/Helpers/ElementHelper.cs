@@ -34,30 +34,6 @@ namespace ReqnrollDotnetSelenium.Helpers
                 return false;
             }
         }
-        // Check if an element is clickable
-        public bool IsElementClickable(By by)
-        {
-            try
-            {
-                ExpectedConditions.ElementToBeClickable(by);
-                return true;
-            }
-            catch (NoSuchElementException)
-            {
-                return false;
-            }
-        }
-
-        // Wait for an element to be present with a customizable timeout
-        public void WaitForWebElement(By by, int timeoutMs = 5000)
-        {
-            TimeSpan timeout = TimeSpan.FromMilliseconds(timeoutMs);
-            var wait = new WebDriverWait(driver, timeout)
-            {
-                PollingInterval = TimeSpan.FromMilliseconds(250)
-            };
-            wait.Until(d => d.FindElement(by));
-        }
 
         // Wait for an element to be clickable with a customizable timeout
         public IWebElement WaitForWebElementClickable(By by, int timeoutMs = 5000)
@@ -68,17 +44,6 @@ namespace ReqnrollDotnetSelenium.Helpers
                 PollingInterval = TimeSpan.FromMilliseconds(1000)
             };
             return wait.Until(ExpectedConditions.ElementToBeClickable(by));
-        }
-
-        // Wait for an element to be visible with a customizable timeout
-        public void WaitForWebElementVisible(By by, int timeoutMs = 5000)
-        {
-            TimeSpan timeout = TimeSpan.FromMilliseconds(timeoutMs);
-            var wait = new WebDriverWait(driver, timeout)
-            {
-                PollingInterval = TimeSpan.FromMilliseconds(250)
-            };
-            wait.Until(ExpectedConditions.ElementIsVisible(by));
-        }        
+        }     
     }
 }
