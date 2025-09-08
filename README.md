@@ -47,6 +47,7 @@ Follow the steps below to set up and run the framework locally:
 
    * Navigate to the `Reports\HtmlReport` directory.
    * Open the generated `.html` file to view the **Extent Report**.
+     <img width="670" height="349" alt="image" src="https://github.com/user-attachments/assets/288a95be-e885-413e-96bf-e2d32e5fe066" />
 
 ---
 
