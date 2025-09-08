@@ -7,4 +7,5 @@ packages
 *.nupkg
 *.DS_Store
 *.user
+**/Reports/*
 *.log
