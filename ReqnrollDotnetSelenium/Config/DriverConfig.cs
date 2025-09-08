@@ -13,6 +13,7 @@ namespace ReqnrollDotnetSelenium.Config
 {
     public class DriverConfig
     {
+        // Initialize WebDriver based on the specified browser type
         public IWebDriver InitializeDriver(BrowserType browser)
         {
             switch (browser)
@@ -36,7 +37,7 @@ namespace ReqnrollDotnetSelenium.Config
                     throw new ArgumentException("Browser is not available");
             }
         }
-
+        // Enum for supported browser types
         public enum BrowserType
         {
             Safari,

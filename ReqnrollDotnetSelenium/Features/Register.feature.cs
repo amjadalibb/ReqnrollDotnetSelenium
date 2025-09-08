@@ -28,7 +28,7 @@ namespace ReqnrollDotnetSelenium.Features
         private static string[] featureTags = ((string[])(null));
         
         private static global::Reqnroll.FeatureInfo featureInfo = new global::Reqnroll.FeatureInfo(new global::System.Globalization.CultureInfo("en-US"), "Features", "Register", "In order to use the Advantage Shopping site\r\n  As a user\r\n  I want to be verify R" +
-                "egister Account with different sets of data", global::Reqnroll.ProgrammingLanguage.CSharp, featureTags, InitializeCucumberMessages());
+                "egister Page with different sets of data", global::Reqnroll.ProgrammingLanguage.CSharp, featureTags, InitializeCucumberMessages());
         
 #line 1 "Register.feature"
 #line hidden
@@ -106,7 +106,7 @@ namespace ReqnrollDotnetSelenium.Features
         
         private static global::Reqnroll.Formatters.RuntimeSupport.FeatureLevelCucumberMessages InitializeCucumberMessages()
         {
-            return new global::Reqnroll.Formatters.RuntimeSupport.FeatureLevelCucumberMessages("Features/Register.feature", 12);
+            return new global::Reqnroll.Formatters.RuntimeSupport.FeatureLevelCucumberMessages("Features/Register.feature", 13);
         }
         
         [global::NUnit.Framework.TestAttribute()]
@@ -189,7 +189,7 @@ this.ScenarioInitialize(scenarioInfo, ruleInfo);
  await testRunner.AndAsync("I Agree to the conditions of Use and Privacy Notice", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
 #line hidden
 #line 19
- await testRunner.ThenAsync("I should see error message \"Use 5 character or longer\" for username field", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
+ await testRunner.ThenAsync("I should see error message \"Use  5 character or longer\" for username field", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
 #line hidden
             }
             await this.ScenarioCleanupAsync();
@@ -362,7 +362,7 @@ this.ScenarioInitialize(scenarioInfo, ruleInfo);
  await testRunner.AndAsync("I Agree to the conditions of Use and Privacy Notice", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
 #line hidden
 #line 47
- await testRunner.ThenAsync("I should see error message \"Use 4 character or longer\" for password field", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
+ await testRunner.ThenAsync("I should see error message \"Use  4 character or longer\" for password field", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
 #line hidden
             }
             await this.ScenarioCleanupAsync();
@@ -536,6 +536,73 @@ this.ScenarioInitialize(scenarioInfo, ruleInfo);
 #line 75
  await testRunner.ThenAsync("I should see error message \"Confirm password field is required\" for confirm passw" +
                         "ord field", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
+#line hidden
+            }
+            await this.ScenarioCleanupAsync();
+        }
+        
+        [global::NUnit.Framework.TestAttribute()]
+        [global::NUnit.Framework.DescriptionAttribute("Create New Account With Clearing Error Message After Entering Valid Data")]
+        [global::NUnit.Framework.CategoryAttribute("CreateNewAccount")]
+        [global::NUnit.Framework.CategoryAttribute("regressiontest")]
+        public async global::System.Threading.Tasks.Task CreateNewAccountWithClearingErrorMessageAfterEnteringValidData()
+        {
+            string[] tagsOfScenario = new string[] {
+                    "CreateNewAccount",
+                    "regressiontest"};
+            global::System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new global::System.Collections.Specialized.OrderedDictionary();
+            string pickleIndex = "10";
+            global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Create New Account With Clearing Error Message After Entering Valid Data", null, tagsOfScenario, argumentsOfScenario, featureTags, pickleIndex);
+            string[] tagsOfRule = ((string[])(null));
+            global::Reqnroll.RuleInfo ruleInfo = null;
+#line 78
+this.ScenarioInitialize(scenarioInfo, ruleInfo);
+#line hidden
+            if ((global::Reqnroll.TagHelper.ContainsIgnoreTag(scenarioInfo.CombinedTags) || global::Reqnroll.TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                await testRunner.SkipScenarioAsync();
+            }
+            else
+            {
+                await this.ScenarioStartAsync();
+#line 79
+ await testRunner.GivenAsync("I am on Register page", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
+#line hidden
+#line 80
+ await testRunner.WhenAsync("I enter username \"\" and email \"\" and password \"\" and confirm password \"\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
+#line hidden
+#line 81
+ await testRunner.AndAsync("I Agree to the conditions of Use and Privacy Notice", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
+#line hidden
+#line 82
+ await testRunner.ThenAsync("I should see error message \"Username field is required\" for username field", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
+#line hidden
+#line 83
+ await testRunner.AndAsync("I should see error message \"Email field is required\" for email field", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
+#line hidden
+#line 84
+ await testRunner.AndAsync("I should see error message \"Password field is required\" for password field", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
+#line hidden
+#line 85
+ await testRunner.AndAsync("I should see error message \"Confirm password field is required\" for confirm passw" +
+                        "ord field", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
+#line hidden
+#line 86
+ await testRunner.WhenAsync("I enter username \"abcdef\" and email \"abc@adv.com\" and password \"Password123\" and " +
+                        "confirm password \"Password123\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
+#line hidden
+#line 87
+ await testRunner.ThenAsync("I should not see error message \"Username field is required\" for username field", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
+#line hidden
+#line 88
+ await testRunner.ThenAsync("I should not see error message \"Email field is required\" for email field", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
+#line hidden
+#line 89
+ await testRunner.ThenAsync("I should not see error message \"Password field is required\" for password field", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
+#line hidden
+#line 90
+ await testRunner.ThenAsync("I should not see error message \"Confirm password field is required\" for confirm p" +
+                        "assword field", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
 #line hidden
             }
             await this.ScenarioCleanupAsync();

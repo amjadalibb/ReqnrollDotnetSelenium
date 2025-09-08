@@ -12,8 +12,7 @@ namespace ReqnrollDotnetSelenium.Pages
 {
     public class RegisterPage(IWebDriver webDriver) : BasePage(webDriver)
     {
-        // Locators
-        private readonly By RegisterButton = By.Id("register_btn");
+        // Locators by ID, Name, XPath
         private readonly By RegisterPageSection = By.Id("registerPage");
 
         private readonly By UsernameField = By.Name("usernameRegisterPage");
@@ -22,11 +21,13 @@ namespace ReqnrollDotnetSelenium.Pages
         private readonly By ConfirmPasswordField = By.Name("confirm_passwordRegisterPage");
         private readonly By IAgreeInput = By.Name("i_agree");
 
-        private readonly By UsernameErrorMessage = By.XPath("//*[@sec-name='userName']/div/label");
-        private readonly By EmailErrorMessage = By.XPath("//*[@sec-name='userEmail']/div/label");
-        private readonly By PasswordErrorMessage = By.XPath("//*[@sec-name='userPassword' and @a-hint='Password']/div/label");
-        private readonly By ConfirmPasswordErrorMessage = By.XPath("//*[@sec-name='userPassword' and @a-hint='Confirm password']/div/label");
+        // Dynamic XPaths for error messages
+        private readonly string dynUsernameErrorMsgFieldXPath = "//*[@sec-name='userName']/div/label[contains(text(), \"{0}\")]";
+        private readonly string dynEmailErrorMsgFieldXPath = "//*[@sec-name='userEmail']/div/label[contains(text(), \"{0}\")]";
+        private readonly string dynPasswordErrorMsgFieldXPath = "//*[@sec-name='userPassword' and @a-hint='Password']/div/label[contains(text(), \"{0}\")]";
+        private readonly string dynCnfrmPasswordErrorMsgFieldXPath = "//*[@sec-name='userPassword' and @a-hint='Confirm password']/div/label[contains(text(), \"{0}\")]";
 
+        // Verify if register page is running
         public bool CheckRegisterPageRunning()
         {
             return IsElementPresent(RegisterPageSection);
@@ -38,6 +39,7 @@ namespace ReqnrollDotnetSelenium.Pages
             Assert.That(CheckRegisterPageRunning(), Is.True, "Register Page is not loading.");
         }
 
+        // Enter user details Username, Email, Password, Confirm Password
         public void EnterUsername(string username)
         {
             SendKeys(UsernameField, username);
@@ -58,54 +60,46 @@ namespace ReqnrollDotnetSelenium.Pages
             SendKeys(ConfirmPasswordField, confirmPassword);
         }
 
-        public void ClickRegisterButton()
-        {
-            ClickElement(RegisterButton);
-        }
-
+        // Click on I Agree to the conditions of Use and Privacy Notice
         public void ClickIAgreeInput()
         {
             ClickElement(IAgreeInput);
         }
 
+        // Validate error messages for Username, Email, Password, Confirm Password fields
         public void ValidateUsernameErrorMessage(string message)
         {
-            Assert.That(FindElement(UsernameErrorMessage).Text, Is.EqualTo(message));
+            Assert.That(FindElement(By.XPath(string.Format(dynUsernameErrorMsgFieldXPath, message))).Text, Is.EqualTo(message.Replace("  ", " ")));
         }
-
-        public bool IsErrorUsernameMessageDisplayed()
-        {
-            return IsElementPresent(UsernameErrorMessage);
-        }
-
         public void ValidateEmailErrorMessage(string message)
         {
-            Assert.That(FindElement(EmailErrorMessage).Text, Is.EqualTo(message));
+            Assert.That(FindElement(By.XPath(string.Format(dynEmailErrorMsgFieldXPath, message))).Text, Is.EqualTo(message));
         }
-
-        public bool IsErrorEmailMessageDisplayed()
-        {
-            return IsElementPresent(EmailErrorMessage);
-        }
-
         public void ValidatePasswordErrorMessage(string message)
         {
-            Assert.That(FindElement(PasswordErrorMessage).Text, Is.EqualTo(message));
+            Assert.That(FindElement(By.XPath(string.Format(dynPasswordErrorMsgFieldXPath, message))).Text, Is.EqualTo(message.Replace("  ", " ")));
         }
-
-        public bool IsErrorPasswordMessageDisplayed()
-        {
-            return IsElementPresent(PasswordErrorMessage);
-        }
-
         public void ValidateConfirmPasswordErrorMessage(string message)
         {
-            Assert.That(FindElement(ConfirmPasswordErrorMessage).Text, Is.EqualTo(message));
+            Assert.That(FindElement(By.XPath(string.Format(dynCnfrmPasswordErrorMsgFieldXPath, message))).Text, Is.EqualTo(message));
         }
 
-        public bool IsErrorConfirmPasswordMessageDisplayed()
+        // Validate error messages cleared for Username, Email, Password, Confirm Password fields
+        public void ValidateErrorUsernameMessageCleared(string message)
         {
-            return IsElementPresent(ConfirmPasswordErrorMessage);
+            Assert.That(IsElementPresent(By.XPath(string.Format(dynUsernameErrorMsgFieldXPath, message))), Is.False, "Username error message did not clear");
+        }
+        public void ValidateErrorEmailMessageCleared(string message)
+        {
+            Assert.That(IsElementPresent(By.XPath(string.Format(dynEmailErrorMsgFieldXPath, message))), Is.False, "Email error message did not clear");
+        }
+        public void ValidateErrorPasswordMessageCleared(string message)
+        {
+            Assert.That(IsElementPresent(By.XPath(string.Format(dynPasswordErrorMsgFieldXPath, message))), Is.False, "Password error message did not clear");
+        }
+        public void ValidateErrorCnfrmPasswordMessageCleared(string message)
+        {
+            Assert.That(IsElementPresent(By.XPath(string.Format(dynCnfrmPasswordErrorMsgFieldXPath, message))), Is.False, "Confirm Password error message did not clear");
         }
     }
 }

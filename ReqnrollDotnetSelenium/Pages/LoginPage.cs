@@ -20,13 +20,8 @@ namespace ReqnrollDotnetSelenium.Pages
 
         // Locators
         private readonly By UserIcon = By.Id("menuUserLink");
-        private readonly By SignInButton = By.Id("sign_in_btn");
-
-        private readonly By UsernameField = By.Name("username");
-        private readonly By PasswordField = By.Name("password");
 
         private readonly By CreateNewAccount = By.XPath("//a[@translate='CREATE_NEW_ACCOUNT']");
-        private readonly By MenuUserLink = By.XPath("////a[@id='menuUserLink']/span");
 
         // Methods to interact with the page
         public void BrowsePage()
@@ -63,27 +58,6 @@ namespace ReqnrollDotnetSelenium.Pages
         public void WaitForLoginPageLoad()
         {
             WaitForWebElementClickable(CreateNewAccount);
-        }
-
-        public void EnterUsername(string username)
-        {
-            SendKeys(UsernameField, username);
-        }
-
-        public void EnterPassword(string password)
-        {
-            SendKeys(PasswordField, password);
-        }
-
-        public void ClickSignIn()
-        {
-            ClickElement(SignInButton);
-        }
-
-        public void VerifySignInUser(string username)
-        {
-            Thread.Sleep(10000);
-            Assert.That(FindElement(MenuUserLink).Text, Is.EqualTo(username));
         }
     }
 }

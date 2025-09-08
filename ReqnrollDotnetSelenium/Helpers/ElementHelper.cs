@@ -10,9 +10,10 @@ namespace ReqnrollDotnetSelenium.Helpers
     {
         private readonly IWebDriver driver = webDriver;
 
+        // Find element with a default timeout of 5000ms
         public IWebElement FindElement(By by)
         {
-            TimeSpan timeout = TimeSpan.FromMilliseconds(10000);
+            TimeSpan timeout = TimeSpan.FromMilliseconds(5000);
             var wait = new WebDriverWait(driver, timeout)
             {
                 PollingInterval = TimeSpan.FromMilliseconds(250)
@@ -20,6 +21,7 @@ namespace ReqnrollDotnetSelenium.Helpers
             return wait.Until(d => d.FindElement(by));
         }
 
+        // Check if an element is present on the page
         public bool IsElementPresent(By by)
         {
             try
@@ -32,6 +34,7 @@ namespace ReqnrollDotnetSelenium.Helpers
                 return false;
             }
         }
+        // Check if an element is clickable
         public bool IsElementClickable(By by)
         {
             try
@@ -44,7 +47,8 @@ namespace ReqnrollDotnetSelenium.Helpers
                 return false;
             }
         }
-        
+
+        // Wait for an element to be present with a customizable timeout
         public void WaitForWebElement(By by, int timeoutMs = 5000)
         {
             TimeSpan timeout = TimeSpan.FromMilliseconds(timeoutMs);
@@ -55,7 +59,8 @@ namespace ReqnrollDotnetSelenium.Helpers
             wait.Until(d => d.FindElement(by));
         }
 
-        public IWebElement WaitForWebElementClickable(By by, int timeoutMs = 10000)
+        // Wait for an element to be clickable with a customizable timeout
+        public IWebElement WaitForWebElementClickable(By by, int timeoutMs = 5000)
         {
             TimeSpan timeout = TimeSpan.FromMilliseconds(timeoutMs);
             var wait = new WebDriverWait(driver, timeout)
@@ -65,6 +70,7 @@ namespace ReqnrollDotnetSelenium.Helpers
             return wait.Until(ExpectedConditions.ElementToBeClickable(by));
         }
 
+        // Wait for an element to be visible with a customizable timeout
         public void WaitForWebElementVisible(By by, int timeoutMs = 5000)
         {
             TimeSpan timeout = TimeSpan.FromMilliseconds(timeoutMs);

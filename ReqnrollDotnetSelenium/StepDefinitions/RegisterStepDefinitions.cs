@@ -1,3 +1,4 @@
+using Microsoft.VisualStudio.TestPlatform.CommunicationUtilities;
 using OpenQA.Selenium;
 using Reqnroll;
 using ReqnrollDotnetSelenium.Pages;
@@ -11,6 +12,7 @@ namespace ReqnrollDotnetSelenium.StepDefinitions
         private readonly LoginPage loginPage = new(driver);
         private readonly RegisterPage registerPage = new(driver);
 
+        // Step definitions for the Register feature
         [Given("I am on Register page")]
         public void GivenIAmOnRegisterPage()
         {
@@ -72,6 +74,34 @@ namespace ReqnrollDotnetSelenium.StepDefinitions
         {
             registerPage.ValidateConfirmPasswordErrorMessage(message);
             Console.WriteLine($"Error message for confirm password field: {message}");
+        }
+
+        [Then("I should not see error message {string} for username field")]
+        public void ThenIShouldNotSeeErrorMessageIsClearedForAllFields(string message)
+        {
+            registerPage.ValidateErrorUsernameMessageCleared(message);
+            Console.WriteLine($"Error message for username field cleared: {message}");
+        }
+
+        [Then("I should not see error message {string} for email field")]
+        public void ThenIShouldNotSeeErrorMessageForEmailField(string message)
+        {
+            registerPage.ValidateErrorEmailMessageCleared(message);
+            Console.WriteLine($"Error message for email field cleared: {message}");
+        }
+
+        [Then("I should not see error message {string} for password field")]
+        public void ThenIShouldNotSeeErrorMessageForPasswordField(string message)
+        {
+            registerPage.ValidateErrorPasswordMessageCleared(message);
+            Console.WriteLine($"Error message for password field cleared: {message}");
+        }
+
+        [Then("I should not see error message {string} for confirm password field")]
+        public void ThenIShouldNotSeeErrorMessageForConfirmPasswordField(string message)
+        {
+            registerPage.ValidateErrorCnfrmPasswordMessageCleared(message);
+            Console.WriteLine($"Error message for confirm password field cleared: {message}");
         }
     }
 }

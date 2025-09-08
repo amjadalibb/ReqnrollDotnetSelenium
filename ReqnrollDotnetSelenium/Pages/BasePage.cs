@@ -17,10 +17,12 @@ namespace ReqnrollDotnetSelenium.Pages
     {
         readonly ElementHelper elementHelper = new(webDriver);
 
+        // Find an element using the ElementHelper
         protected IWebElement FindElement(By by)
         {
             return elementHelper.FindElement(by);
         }
+        // Send keys to an input field
         protected void SendKeys(By by, string message)
         {
             try
@@ -34,6 +36,7 @@ namespace ReqnrollDotnetSelenium.Pages
                 Console.WriteLine($"Element exception: {ex.Message}");
             }
         }
+        //  Click an element
         protected void ClickElement(By by)
         {
             try
@@ -47,28 +50,16 @@ namespace ReqnrollDotnetSelenium.Pages
             }
         }
 
+        // Check if an element is present on the page
         protected bool IsElementPresent(By by)
         {
             return elementHelper.IsElementPresent(by);
         }
 
-        protected void WaitForWebElement(By by)
-        {
-            elementHelper.WaitForWebElement(by);
-        }
-
+        // Wait for an element to be clickable
         protected void WaitForWebElementClickable(By by)
         {
             elementHelper.WaitForWebElementClickable(by);
         }
-        protected void WaitForWebElementVisible(By by)
-        {
-            elementHelper.WaitForWebElementVisible(by);
-        }
-        protected void IsElementClickable(By by)
-        {
-            elementHelper.IsElementClickable(by);
-        }
-
     }
 }

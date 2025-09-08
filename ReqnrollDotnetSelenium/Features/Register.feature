@@ -2,7 +2,7 @@
 
 In order to use the Advantage Shopping site
   As a user
-  I want to be verify Register Account with different sets of data
+  I want to be verify Register Page with different sets of data
 	
 @CreateNewAccount @smoketest @regressiontest
 Scenario: Create New Account With Empty Username
@@ -16,7 +16,7 @@ Scenario: Create New Account With Short Username
 	Given I am on Register page
 	When I enter username "abc" and email "abc@adv.com" and password "password123" and confirm password "password123"  
 	And I Agree to the conditions of Use and Privacy Notice
-	Then I should see error message "Use 5 character or longer" for username field
+	Then I should see error message "Use  5 character or longer" for username field
 
 @CreateNewAccount @smoketest @regressiontest
 Scenario: Create New Account With Empty Email
@@ -44,7 +44,7 @@ Scenario: Create New Account With Short Password
 	Given I am on Register page
 	When I enter username "abcde" and email "abc@adv.com" and password "abc" and confirm password "abc"  
 	And I Agree to the conditions of Use and Privacy Notice
-	Then I should see error message "Use 4 character or longer" for password field
+	Then I should see error message "Use  4 character or longer" for password field
 	
 @CreateNewAccount @smoketest @regressiontest
 Scenario: Create New Account Without Upper Letter in Password
@@ -73,3 +73,18 @@ Scenario: Create New Account With Empty Confirm Password
 	When I enter username "abcdef" and email "abc@adv.com" and password "Password123" and confirm password "" 
 	And I Agree to the conditions of Use and Privacy Notice
 	Then I should see error message "Confirm password field is required" for confirm password field
+
+@CreateNewAccount @regressiontest
+Scenario: Create New Account With Clearing Error Message After Entering Valid Data
+	Given I am on Register page
+	When I enter username "" and email "" and password "" and confirm password "" 
+	And I Agree to the conditions of Use and Privacy Notice
+	Then I should see error message "Username field is required" for username field
+	And I should see error message "Email field is required" for email field
+	And I should see error message "Password field is required" for password field
+	And I should see error message "Confirm password field is required" for confirm password field
+	When I enter username "abcdef" and email "abc@adv.com" and password "Password123" and confirm password "Password123" 
+	Then I should not see error message "Username field is required" for username field
+	Then I should not see error message "Email field is required" for email field
+	Then I should not see error message "Password field is required" for password field
+	Then I should not see error message "Confirm password field is required" for confirm password field

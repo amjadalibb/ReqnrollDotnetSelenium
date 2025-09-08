@@ -58,6 +58,7 @@ namespace ReqnrollDotnetSelenium.Hooks
             {
                 throw new InvalidOperationException("Browser name is not configured in app settings.");
             }
+            // Initialize WebDriver based on the specified browser
             driver = driverConfig.InitializeDriver((DriverConfig.BrowserType)Enum.Parse(typeof(DriverConfig.BrowserType), browser));
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(5);
         }
@@ -113,13 +114,14 @@ namespace ReqnrollDotnetSelenium.Hooks
         {
             if (scenarioContext.TestError != null)
             {
+                // Create Screenshots folder if it doesn't exist
                 string screenshotPath = curReportFolder + @"Screenshots\";
 
                 if (!Directory.Exists(screenshotPath))
                 {
                     Directory.CreateDirectory(screenshotPath);
                 }
-
+                // Take screenshot
                 string pathName = screenshotPath + scenarioContext.ScenarioInfo.Title.Replace(" ", "") + ".png";
                 TakeScreenshot(pathName);
 
@@ -144,6 +146,7 @@ namespace ReqnrollDotnetSelenium.Hooks
 
         private static void TakeScreenshot(string filePath)
         {
+            // Take screenshot and save to the specified path
             ITakesScreenshot screenshotDriver = driver as ITakesScreenshot;
             Screenshot screenshot = screenshotDriver.GetScreenshot();
             screenshot.SaveAsFile(filePath);

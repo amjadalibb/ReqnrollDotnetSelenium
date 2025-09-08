@@ -9,6 +9,7 @@ namespace ReqnrollDotnetSelenium.Helpers
 {
     public class appSettings
     {
+        // Method to get application settings from appsettings.json
         public static string? GetAppSettings(string xPath)
         {
             var jsonPath = Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName, "Config\\appsettings.json");
