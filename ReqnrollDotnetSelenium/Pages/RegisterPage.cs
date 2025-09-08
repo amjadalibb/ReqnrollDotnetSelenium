@@ -13,13 +13,13 @@ namespace ReqnrollDotnetSelenium.Pages
     public class RegisterPage(IWebDriver webDriver) : BasePage(webDriver)
     {
         // Locators by ID, Name, XPath
-        private readonly By RegisterPageSection = By.Id("registerPage");
+        private readonly By registerPageSection = By.Id("registerPage");
 
-        private readonly By UsernameField = By.Name("usernameRegisterPage");
-        private readonly By EmailField = By.Name("emailRegisterPage");
-        private readonly By PasswordField = By.Name("passwordRegisterPage");
-        private readonly By ConfirmPasswordField = By.Name("confirm_passwordRegisterPage");
-        private readonly By IAgreeInput = By.Name("i_agree");
+        private readonly By usernameField = By.Name("usernameRegisterPage");
+        private readonly By emailField = By.Name("emailRegisterPage");
+        private readonly By passwordField = By.Name("passwordRegisterPage");
+        private readonly By confirmPasswordField = By.Name("confirm_passwordRegisterPage");
+        private readonly By iAgreeInput = By.Name("i_agree");
 
         // Dynamic XPaths for error messages
         private readonly string dynUsernameErrorMsgFieldXPath = "//*[@sec-name='userName']/div/label[contains(text(), \"{0}\")]";
@@ -30,7 +30,7 @@ namespace ReqnrollDotnetSelenium.Pages
         // Verify if register page is running
         public bool CheckRegisterPageRunning()
         {
-            return IsElementPresent(RegisterPageSection);
+            return IsElementPresent(registerPageSection);
         }
 
         // Verify if register page is running
@@ -42,28 +42,28 @@ namespace ReqnrollDotnetSelenium.Pages
         // Enter user details Username, Email, Password, Confirm Password
         public void EnterUsername(string username)
         {
-            SendKeys(UsernameField, username);
+            SendKeys(usernameField, username);
         }
 
         public void EnterEmail(string email)
         {
-            SendKeys(EmailField, email);
+            SendKeys(emailField, email);
         }
 
         public void EnterPassword(string password)
         {
-            SendKeys(PasswordField, password);
+            SendKeys(passwordField, password);
         }
 
         public void EnterConfirmPassword(string confirmPassword)
         {
-            SendKeys(ConfirmPasswordField, confirmPassword);
+            SendKeys(confirmPasswordField, confirmPassword);
         }
 
         // Click on I Agree to the conditions of Use and Privacy Notice
         public void ClickIAgreeInput()
         {
-            ClickElement(IAgreeInput);
+            ClickElement(iAgreeInput);
         }
 
         // Validate error messages for Username, Email, Password, Confirm Password fields

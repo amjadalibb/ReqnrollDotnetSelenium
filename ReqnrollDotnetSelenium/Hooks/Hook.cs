@@ -53,7 +53,7 @@ namespace ReqnrollDotnetSelenium.Hooks
             driverConfig = new DriverConfig();
 
             // With the following null-checked version:
-            string? browser = appSettings.GetAppSettings("browserDetails:name");
+            string? browser = AppSettings.GetAppSettings("browserDetails:name");
             if (string.IsNullOrEmpty(browser))
             {
                 throw new InvalidOperationException("Browser name is not configured in app settings.");

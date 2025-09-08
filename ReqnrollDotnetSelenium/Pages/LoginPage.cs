@@ -15,13 +15,13 @@ namespace ReqnrollDotnetSelenium.Pages
         readonly IWebDriver driver = webDriver;
 
         // Read application details from appsettings.json
-        readonly string? applicationURL = appSettings.GetAppSettings("applicationDetails:url");
-        readonly string? appTitle = appSettings.GetAppSettings("applicationDetails:title");
+        readonly string? applicationURL = AppSettings.GetAppSettings("applicationDetails:url");
+        readonly string? appTitle = AppSettings.GetAppSettings("applicationDetails:title");
 
         // Locators
-        private readonly By UserIcon = By.Id("menuUserLink");
+        private readonly By userIcon = By.Id("menuUserLink");
 
-        private readonly By CreateNewAccount = By.XPath("//a[@translate='CREATE_NEW_ACCOUNT']");
+        private readonly By createNewAccount = By.XPath("//a[@translate='CREATE_NEW_ACCOUNT']");
 
         // Methods to interact with the page
         public void BrowsePage()
@@ -30,7 +30,7 @@ namespace ReqnrollDotnetSelenium.Pages
                 throw new InvalidOperationException("Application URL is not configured.");
             driver.Navigate().GoToUrl(applicationURL);
             driver.Manage().Window.Maximize();
-            IsElementPresent(UserIcon);
+            IsElementPresent(userIcon);
         }
 
         // Verify if application is running
@@ -45,19 +45,19 @@ namespace ReqnrollDotnetSelenium.Pages
         // Click on Create New Account
         public void ClickCreateNewAccount()
         {
-            ClickElement(CreateNewAccount);
+            ClickElement(createNewAccount);
         }
 
         //  Click on User Icon
         public void ClickUserIcon()
         {
-            FindElement(UserIcon).Click();
+            FindElement(userIcon).Click();
         }
 
         // Wait for Login page load
         public void WaitForLoginPageLoad()
         {
-            WaitForWebElementClickable(CreateNewAccount);
+            WaitForWebElementClickable(createNewAccount);
         }
     }
 }

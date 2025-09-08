@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ReqnrollDotnetSelenium.Helpers
 {
-    public class appSettings
+    public class AppSettings
     {
         // Method to get application settings from appsettings.json
         public static string? GetAppSettings(string xPath)
